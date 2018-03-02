@@ -1,9 +1,11 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ThreadsModule} from "@core/services/threads/threads.module";
+import {EffectsModule} from "@core/store/effects/effects.module";
 
 const PROVIDERS = [
-  ThreadsModule.forRoot().providers
+  ThreadsModule.forRoot().providers,
+  EffectsModule.forRoot().providers,
 ];
 
 @NgModule({

@@ -16,7 +16,13 @@ export class ThreadsService {
     const messagesO = this.http.get<any>(`${this.heroesUrl}/messages`);
     const participantsO = this.http.get<any>(`${this.heroesUrl}/participants`);
     const threadsO = this.http.get<any>(`${this.heroesUrl}/threads`);
-    return forkJoin<AllUserData>(messagesO, participantsO, threadsO);
+    return forkJoin<AllUserData>(messagesO, participantsO, threadsO).map(res => {
+      const newObj: any = {};
+      newObj.messages = res[0];
+      newObj.participants = res[1];
+      newObj.threads = res[2];
+      return newObj;
+    });
   }
 
 }
